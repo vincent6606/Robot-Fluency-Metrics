@@ -1,10 +1,10 @@
 function robot(x, y, right, left, rightbound, leftbound) {
-    this.x = x
-    this.y = y
-    this.right = right
-    this.left = left
-    this.rightbound = rightbound
-    this.leftbound = leftbound
+    this.x = x;
+    this.y = y;
+    this.right = right;
+    this.left = left;
+    this.rightbound = rightbound;
+    this.leftbound = leftbound;
     this.delay_on = 0;
 
     this.stop_time = 0;
@@ -14,7 +14,7 @@ function robot(x, y, right, left, rightbound, leftbound) {
     this.waiting = 0;
     this.update = function() {
 
-        robot_speed = 10;
+        //robot_speed = 10;
 
         if (ball1.robot === 1) {
 
