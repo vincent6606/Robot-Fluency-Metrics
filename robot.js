@@ -24,29 +24,27 @@ function robot(x, y, right, left, rightbound, leftbound) {
 
 
 
+            //Introduce delay when the robot is at the right
+            if (this.delay_on == 1) {
 
-
-                //Introduce delay when the robot is at the right
-                if (this.delay_on == 1) {
-
-                    if(this.waiting==0){
-                        this.stop_time = counter + this.delay;
-                        console.log('robot resumes!' +counter+' '+ this.stop_time);
-                        this.waiting =1;
-                      }
-
-                    if (counter <= this.stop_time) {
-                        robot_speed = 0;
-                        console.log('robot is stopped!' + counter);
-
-
-                    } else {
-                        robot_speed = 10;
-                        this.delay_on = 0;
-                        console.log('robot starts!!' + counter)
-                        this.waiting=0
-                    }
+                if (this.waiting == 0) {
+                    this.stop_time = counter + this.delay;
+                    console.log('robot resumes!' + counter + ' ' + this.stop_time);
+                    this.waiting = 1;
                 }
+
+                if (counter <= this.stop_time) {
+                    robot_speed = 0;
+                    console.log('robot is stopped!' + counter);
+
+
+                } else {
+                    robot_speed = 10;
+                    this.delay_on = 0;
+                    console.log('robot starts!!' + counter)
+                    this.waiting = 0
+                }
+            }
 
 
 
