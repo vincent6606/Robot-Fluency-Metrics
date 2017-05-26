@@ -11,7 +11,7 @@ var robot_speed = 10;
 var counter = 0;
 
 
-
+var prev_idle = 0
 var human_idle = 0
 
 var t_init = 0
@@ -62,7 +62,7 @@ function draw() {
     //Increment the timer every 1/frameRate seconds
     FrameRate = getFrameRate();
 
-    counter = Math.round((float(1 / 20) + counter) * 100) / 100;
+    counter = Math.round((float(1 /20) + counter) * 100) / 100;
     background(13);
     rect(mid, 10, 1, height);
 
@@ -90,10 +90,20 @@ function draw() {
 
 
 
-    text('Human Idle : ' + human_idle, 200, 370)
+    //text('Human Idle : ' + human_idle, 200, 370)
+    if (ball1.robot===1){
+        vincent.waited = Math.round(((counter) - vincent.idle_start) * 100) / 100
+
+        human_idle = vincent.waited
+    }
 
 
+    text('Human Idle : '+ (human_idle+prev_idle),200,370)
     rect(mid - 15, 2, 1, 600)
+
+
+
+
 }
 
 

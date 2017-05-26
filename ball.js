@@ -64,10 +64,12 @@ function ball(x, y) {
             console.log("new ball")
             console.log('move' + counter)
 
-            vincent.waited = Math.round(((counter) - vincent.idle_start) * 100) / 100
+            // vincent.waited = Math.round(((counter) - vincent.idle_start) * 100) / 100
+            //
+             //human_idle += human_idle
+            // text('Human Idle : '+ human_idle,200,370)
 
-            human_idle += vincent.waited
-            text('Human Idle : '+ human_idle,200,370)
+            prev_idle += human_idle
             console.log('waited' + vincent.waited);
 
             this.x = random(200);
