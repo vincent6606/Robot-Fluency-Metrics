@@ -94,11 +94,11 @@ function draw() {
     if (ball1.robot===1){
         vincent.waited = Math.round(((counter) - vincent.idle_start) * 100) / 100
 
-        human_idle = vincent.waited
+        human_idle +=Math.round((float(1 /20)) * 100) / 100;
     }
 
-
-    text('Human Idle : '+ (human_idle+prev_idle),200,370)
+    
+    text('Human Idle : '+ ((human_idle)*100/counter).toFixed(2)+'%',200,370)
     rect(mid - 15, 2, 1, 600)
 
 
