@@ -15,8 +15,6 @@ function ball(x, y) {
 
         if (this.x >= vincent.rightbound - 15 && this.x <= vincent.rightbound + 5) {
             vincent.idle_start = counter;
-            text("Hit", 300, 300)
-            console.log('hit at' + counter)
         }
 
         rectMode(CENTER);
@@ -51,9 +49,9 @@ function ball(x, y) {
         if (this.robot == 1) {
             //console.log('Human Stopped')
             rectMode(CENTER)
+            //Draw a red rectangle 
             fill(255, 1, 1);
-            rect(mid, 10, 50, scl);
-            //rect (width/2,1,2,height)
+            rect(mid-5, 10, 50, scl);
             rectMode(CORNER);
         }
 
@@ -61,8 +59,8 @@ function ball(x, y) {
 
         if (this.x >= andy.rightbound) {
 
-            console.log("new ball")
-            console.log('move' + counter)
+            //console.log("new ball")
+            //console.log('move' + counter)
 
             // vincent.waited = Math.round(((counter) - vincent.idle_start) * 100) / 100
             //
@@ -70,10 +68,10 @@ function ball(x, y) {
             // text('Human Idle : '+ human_idle,200,370)
 
             prev_idle += human_idle
-            console.log('waited' + vincent.waited);
+            //console.log('waited' + vincent.waited);
 
             this.x = random(200);
-            console.log(this.x)
+            //console.log(this.x)
             this.human = 0
             this.robot = 0
         }

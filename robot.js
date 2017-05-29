@@ -12,9 +12,10 @@ function robot(x, y, right, left, rightbound, leftbound) {
     //Delay time for the robot
     this.delay = 1.2;
     this.waiting = 0;
+    //this.speed = 0
     this.update = function() {
 
-        //robot_speed = 10;
+
 
         if (ball1.robot === 1) {
 
@@ -31,15 +32,17 @@ function robot(x, y, right, left, rightbound, leftbound) {
                     this.stop_time = counter + this.delay;
                     console.log('robot resumes!' + counter + ' ' + this.stop_time);
                     this.waiting = 1;
+                    this.speed = 0;
                 }
 
                 if (counter <= this.stop_time) {
-                    robot_speed = 0;
+                    this.speed = 0;
+                    
                     console.log('robot is stopped!' + counter);
 
 
                 } else {
-                    robot_speed = 10;
+                    this.speed = rSlider.value();
                     this.delay_on = 0;
                     console.log('robot starts!!' + counter)
                     this.waiting = 0
@@ -50,11 +53,9 @@ function robot(x, y, right, left, rightbound, leftbound) {
 
 
             if (this.x + this.width <= this.rightbound - this.width) {
-                this.x += robot_speed;
+                this.x += this.speed;
             } else {
-
                 this.x = this.rightbound - this.width - 5
-
             }
 
         }
@@ -63,14 +64,13 @@ function robot(x, y, right, left, rightbound, leftbound) {
 
             this.delay_on = 1
             this.dir = -1;
+            //Check if the robot has hit the left bound
             if (this.x - 5 >= this.leftbound + this.width) {
-                this.x -= robot_speed;
-
-
+                this.x -= this.speed;
                 andy.show();
-
             } else {
-
+              //If the robot hit the left bound, stop
+                this.speed = 0;
                 this.x = this.leftbound + 45;
             }
         }
@@ -79,16 +79,12 @@ function robot(x, y, right, left, rightbound, leftbound) {
             this.delay_on = 1
             this.dir = -1
             if (this.x - 5 >= this.leftbound + this.width) {
-                this.x -= robot_speed;
+                this.x -= this.speed;
             } else {
-
+              this.speed = 0;
                 this.x = this.leftbound + 45;
             }
-
         }
-
-
-
     }
 
 

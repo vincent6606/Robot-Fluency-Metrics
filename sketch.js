@@ -10,9 +10,11 @@ var mid = 400;
 var robot_speed = 10;
 var counter = 0;
 
-
+//Metrics Variables
 var prev_idle = 0
 var human_idle = 0
+var r_idle = 0;
+
 
 var t_init = 0
 var FrameRate = 0;
@@ -37,6 +39,20 @@ function setup() {
     rSlider = createSlider(0, 30, 10);
     rSlider.position(20, 390);
 
+
+
+
+    // Create the plot
+		plot = new GPlot(this);
+		plot.setPos(900, 30);
+    plot.setDim(350, 250);
+    plot.setPoints(human_idle);
+    // Set the plot title and the axis labels
+		plot.setTitleText("Human Idle Time");
+		plot.getXAxis().setAxisLabelText("Simulation time");
+		plot.getYAxis().setAxisLabelText("Idle time as % of total");
+    plot.activatePanning();
+    
 }
 
 function timeIt() {
@@ -50,10 +66,9 @@ function v_idle() {
     }
     vincent.idle_start = counter;
     text(vincent.idle_start, 600, 400)
-    //real action
+  
 }
 
-//doStuff();
 
 
 
@@ -64,8 +79,10 @@ function draw() {
 
     counter = Math.round((float(1 /20) + counter) * 100) / 100;
     background(13);
-    rect(mid, 10, 1, height);
-
+    //Attach the slider value to robot speed
+    //The robot speed is set to slider first, but the robot
+    //could overwrite the speed during delay
+    andy.speed = rSlider.value();
 
     vincent.update();
     vincent.show();
@@ -75,7 +92,6 @@ function draw() {
     andy.show();
 
     andy.update();
-    rect(190, 2, 1, 600);
     rect(800, 2, 1, 600);
 
     fill(255);
@@ -83,27 +99,29 @@ function draw() {
     text('Time passed: ' + counter, 900, 25);
     text('Robot', 600, 50);
     text('Human', 200, 50);
-    robot_speed = rSlider.value();
+   
     fill(255);
     textSize(20);
-    text('Robot Speed: ' + robot_speed, 10, 370)
-
-
-
-    //text('Human Idle : ' + human_idle, 200, 370)
-    if (ball1.robot===1){
-        vincent.waited = Math.round(((counter) - vincent.idle_start) * 100) / 100
-
-        human_idle +=Math.round((float(1 /20)) * 100) / 100;
-    }
-
+    text('Robot Speed: ' + rSlider.value(), 10, 370)
     
-    text('Human Idle : '+ ((human_idle)*100/counter).toFixed(2)+'%',200,370)
-    rect(mid - 15, 2, 1, 600)
+     text('Robot Current Speed: ' + andy.speed, 30, 350)
 
-
-
-
+    collect_metrics();
+    
+    
+    rect(mid - 15, 2, 1, height)
+    rect(mid, 2, 1, height);
+    plot.beginDraw();
+		plot.drawBackground();
+		plot.drawBox();
+		plot.drawXAxis();
+		plot.drawYAxis();
+		plot.drawTopAxis();
+		plot.addPoint(counter,(human_idle)*100/counter);
+		//plot.getMainLayer().drawPoints();
+		//plot.getLayer("surface").drawFilledContour(GPlot.HORIZONTAL, 0);
+		plot.removePoint(0);
+		//plot.removePoint(plot.getPointsRef().length - 1);
 }
 
 

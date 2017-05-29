@@ -16,7 +16,7 @@ function human(x, y, right, left, rightbound, leftbound) {
 
 
     //Vincent's speed
-    this.vincent_speed = 0;
+    this.speed = 0;
 
     //Statistics
     this.idle_start = 0;
@@ -48,11 +48,11 @@ function human(x, y, right, left, rightbound, leftbound) {
             //console.log("going right");
             this.dir = 1;
             if (this.x + this.width <= this.rightbound - this.width) {
-                this.vincent_speed = 10
+                this.speed = 10
                 this.x += 10;
             } else {
                 this.x = this.rightbound - this.width - 5;
-                this.vincent_speed = 0
+                this.speed = 0
                 this.idle_start = counter;
 
 
@@ -64,12 +64,12 @@ function human(x, y, right, left, rightbound, leftbound) {
 
             this.dir = Math.sign(ball1.x - this.x)
             if (this.x - 5 >= this.leftbound + this.width) {
-                this.vincent_speed = 10
+                this.speed = 10
                 this.x -= 10;
             } else {
-                this.vincent_speed = 0
+                this.speed = 0
                 this.x = this.leftbound + 45;
-                this.x += this.vincent_speed;
+                this.x += this.speed;
             }
         }
 
