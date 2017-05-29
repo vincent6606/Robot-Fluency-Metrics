@@ -1,4 +1,4 @@
-function robot(x, y, right, left, rightbound, leftbound) {
+function robot(x, y, right, left, rightbound, leftbound,curr_ball) {
     this.x = x;
     this.y = y;
     this.right = right;
@@ -6,6 +6,7 @@ function robot(x, y, right, left, rightbound, leftbound) {
     this.rightbound = rightbound;
     this.leftbound = leftbound;
     this.delay_on = 0;
+    this.ball = curr_ball;
 
     this.stop_time = 0;
     human.call(this, x, y, right, left, rightbound, leftbound);
@@ -17,7 +18,7 @@ function robot(x, y, right, left, rightbound, leftbound) {
 
 
 
-        if (ball1.robot === 1) {
+        if (this.ball.robot === 1) {
 
             this.dir = 1;
             this.show();
@@ -30,7 +31,7 @@ function robot(x, y, right, left, rightbound, leftbound) {
 
                 if (this.waiting == 0) {
                     this.stop_time = counter + this.delay;
-                    console.log('robot resumes!' + counter + ' ' + this.stop_time);
+                    // console.log('robot resumes!' + counter + ' ' + this.stop_time);
                     this.waiting = 1;
                     this.speed = 0;
                 }
@@ -38,13 +39,13 @@ function robot(x, y, right, left, rightbound, leftbound) {
                 if (counter <= this.stop_time) {
                     this.speed = 0;
                     
-                    console.log('robot is stopped!' + counter);
+                    // console.log('robot is stopped!' + counter);
 
 
                 } else {
                     this.speed = rSlider.value();
                     this.delay_on = 0;
-                    console.log('robot starts!!' + counter)
+                    // console.log('robot starts!!' + counter)
                     this.waiting = 0
                 }
             }
@@ -60,7 +61,7 @@ function robot(x, y, right, left, rightbound, leftbound) {
 
         }
         //If the robot does not have the ball, go to the mid line
-        if (ball1.x >= mid && ball1.robot == 0) {
+        if (this.ball.x >= mid && this.ball.robot == 0) {
 
             this.delay_on = 1
             this.dir = -1;
@@ -75,7 +76,7 @@ function robot(x, y, right, left, rightbound, leftbound) {
             }
         }
 
-        if (ball1.robot == 0) {
+        if (this.ball.robot == 0) {
             this.delay_on = 1
             this.dir = -1
             if (this.x - 5 >= this.leftbound + this.width) {

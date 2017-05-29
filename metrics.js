@@ -2,7 +2,7 @@ function collect_metrics(){
   
  
   
-      if (ball1.robot===1){
+      if (vincent.speed===0){
             human_idle +=Math.round((float(1 /20)) * 100) / 100;
     }
     
@@ -24,5 +24,5 @@ function collect_metrics(){
     
     
     
-    console.log("Idle, "+((human_idle)*100/counter).toFixed(2),",", counter)
+    //zconsole.log("Idle, "+((human_idle)*100/counter).toFixed(2),",", counter)
 }

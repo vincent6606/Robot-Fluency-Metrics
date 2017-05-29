@@ -19,13 +19,26 @@ var r_idle = 0;
 var t_init = 0
 var FrameRate = 0;
 
+
+var balls = [];
+
+
 function setup() {
     robot_bound = 800 //Boundary of the robot
     createCanvas(2000, 400);
+
+    balls.push(new ball(random(200), int(height / 2) - 20));
     vincent = new human(100, 400, RIGHT_ARROW, LEFT_ARROW, mid, 0);
+
+    vincent.ball = balls[0]
     andy = new robot(mid, 400, 68, 65, robot_bound, mid);
     andy.x = robot_bound;
-    ball1 = new ball(200, int(height / 2) - 20);
+    andy.ball = balls[0]
+
+  // ball1 = new ball(200, int(height / 2) - 20);
+    balls.push(new ball(random(200), int(height / 2) - 20));
+
+
     frameRate(20);
     t_init = millis();
     counter = 0;
@@ -59,15 +72,6 @@ function timeIt() {
     counter++;
 }
 
-function v_idle() {
-    if (ball1.human === 1) { //we want it to match
-        setTimeout(v_idle, 1); //wait 50 millisecnds then recheck
-        return;
-    }
-    vincent.idle_start = counter;
-    text(vincent.idle_start, 600, 400)
-  
-}
 
 
 
@@ -79,6 +83,33 @@ function draw() {
 
     counter = Math.round((float(1 /20) + counter) * 100) / 100;
     background(13);
+
+
+
+
+
+
+
+
+    for (var i = balls.length-1; i >= 0; i--) {
+        balls[0].color =100
+        balls[i].show();
+
+        if (balls[i].offscreen()) {
+            balls.splice(i, 1);
+            balls.push(new ball(random(200), int(height / 2) - 20));
+        }
+
+        if(balls[i].x<=vincent.rightbound && vincent.ball.robot){
+            andy.ball=vincent.ball
+            vincent.ball = balls[i]
+        }
+
+
+
+
+    }
+
     //Attach the slider value to robot speed
     //The robot speed is set to slider first, but the robot
     //could overwrite the speed during delay
@@ -86,7 +117,7 @@ function draw() {
 
     vincent.update();
     vincent.show();
-    ball1.show();
+    //ball1.show();
 
 
     andy.show();

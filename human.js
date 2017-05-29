@@ -1,8 +1,8 @@
-function human(x, y, right, left, rightbound, leftbound) {
+function human(x, y, right, left, rightbound, leftbound,curr_ball) {
     this.x = x;
     this.y = y;
     this.dir = -1;
-
+    this.ball = curr_ball;
     //Left and right boundaries for the players
     this.leftbound = leftbound;
     this.rightbound = rightbound;
@@ -44,7 +44,7 @@ function human(x, y, right, left, rightbound, leftbound) {
 
     this.update = function() {
         //The human moves towards the robot
-        if ((ball1.x >= (this.x + 40 * this.dir) && ball1.robot == 0) || ball1.human == 1) {
+        if ((this.ball.x >= (this.x + 40 * this.dir) && this.ball.robot == 0) || this.ball.human == 1) {
             //console.log("going right");
             this.dir = 1;
             if (this.x + this.width <= this.rightbound - this.width) {
@@ -60,9 +60,9 @@ function human(x, y, right, left, rightbound, leftbound) {
 
         }
         //Human moves to the ball
-        if (ball1.x < this.x + 40 * this.dir && ball1.human == 0) {
+        if (this.ball.x < this.x + 40 * this.dir && this.ball.human == 0) {
 
-            this.dir = Math.sign(ball1.x - this.x)
+            this.dir = Math.sign(this.ball.x - this.x)
             if (this.x - 5 >= this.leftbound + this.width) {
                 this.speed = 10
                 this.x -= 10;

@@ -7,7 +7,7 @@ function ball(x, y) {
     this.width = scl;
     this.dir = 1
 
-
+    this.color = 255
 
 
     this.show = function() {
@@ -43,7 +43,9 @@ function ball(x, y) {
 
 
         rectMode(CENTER)
+        fill(this.color, 1, 100);
         rect(this.x, this.y, scl, scl);
+
         //rect (width/2,1,2,height);
         rectMode(CORNER);
         if (this.robot == 1) {
@@ -79,6 +81,12 @@ function ball(x, y) {
 
 
 
+
+    }
+
+
+    this.offscreen = function(){
+        return this.x>=andy.rightbound
 
     }
 
