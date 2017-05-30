@@ -32,5 +32,7 @@ function collect_metrics(){
     text('Concurent Activity : '+ ((con_act)*100/counter).toFixed(2)+'%',600,370)
     
     
-    //zconsole.log("Idle, "+((human_idle)*100/counter).toFixed(2),",", counter)
+    console.log("Human Idle, "+((human_idle)*100/counter).toFixed(2),",", counter)
+    console.log("Robot Idle, "+((r_idle)*100/counter).toFixed(2),",", counter)
+    console.log("Concurrent Activity, "+((con_act)*100/counter).toFixed(2),",", counter)
 }
