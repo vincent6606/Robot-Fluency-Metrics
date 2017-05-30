@@ -14,6 +14,7 @@ var counter = 0;
 var prev_idle = 0
 var human_idle = 0
 var r_idle = 0;
+var con_act = 0;
 
 
 var t_init = 0
